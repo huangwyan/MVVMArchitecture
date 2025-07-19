@@ -1,6 +1,5 @@
 package com.imyyq.mvvm.utils
 
-import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -9,9 +8,6 @@ import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.ftd.livepermissions.LivePermissions
-import com.ftd.livepermissions.PermissionResult
 import com.imyyq.mvvm.app.BaseApp
 import java.io.File
 
@@ -146,29 +142,6 @@ object CaptureAndCropManager {
 
     private fun capturePhotoFromCamera(activity: AppCompatActivity?, fragment: Fragment?, requestCode: Int) {
         val lifecycleOwner = activity ?: fragment!!.activity as AppCompatActivity
-        if (Utils.isNeedCheckPermission) {
-            val live =  LivePermissions(lifecycleOwner)
-            live.request(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
-            ).observe(lifecycleOwner, Observer {
-                when (it) {
-                    is PermissionResult.Grant -> {  //权限允许
-                        captureCameraPhotoWithPermission(activity, fragment, requestCode)
-                    }
-                    is PermissionResult.Rationale -> {  //权限拒绝
-                        ToastUtil.showLongToast("授权失败，无法使用相机")
-                    }
-                    is PermissionResult.Deny -> {   //权限拒绝，且勾选了不再询问
-                        AppUtil.gotoAppDetailsSettings(BaseApp.getInstance(), 0)
-                        ToastUtil.showLongToast("检测到您多次拒绝授权，请手动打开相机权限")
-                    }
-                }
-            })
-        } else {
-            captureCameraPhotoWithPermission(activity, fragment, requestCode)
-        }
     }
 
     // 必须有权限了，才可以拍照获取照片

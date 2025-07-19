@@ -1,10 +1,4 @@
-ext {
-    SysConfig = [
-            compileSdkVersion: SDKVersion.compileSdkVersion,
-            minSdkVersion    : SDKVersion.minSdkVersion,
-            targetSdkVersion : SDKVersion.targetSdkVersion
-    ]
-}
+
 
 static def curDate() {
     return new Date().format("yyyy-MM-dd")

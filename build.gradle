@@ -1,14 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply from: 'dependencies.gradle'
+apply from: 'config.gradle'
+
 android {
-    compileSdkVersion SysConfig.compileSdkVersion
+    compileSdkVersion 34
+    namespace "com.leisure.card"
 
     defaultConfig {
-        minSdkVersion SysConfig.minSdkVersion
-        targetSdkVersion SysConfig.targetSdkVersion
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
@@ -102,14 +105,6 @@ dependencies {
         compileOnly Deps.lifecycleProcess
     }
 
-    // 内嵌的加载中库
-    checkMVVMConfigProperty(IncludeLib.loadSir, "loadSir")
-    if (IncludeLib.loadSir) {
-        api Deps.loadSir
-    } else {
-        compileOnly Deps.loadSir
-    }
-
     // RecyclerView
     checkMVVMConfigProperty(IncludeLib.recyclerView, "recyclerView")
     if (IncludeLib.recyclerView) {
@@ -145,14 +140,6 @@ dependencies {
         // kapt Deps.glideCompiler
     } else {
         compileOnly Deps.glide
-    }
-
-    // 权限申请
-    checkMVVMConfigProperty(IncludeLib.livePermissions, "livePermissions")
-    if (IncludeLib.livePermissions) {
-        api Deps.livePermissions
-    } else {
-        compileOnly Deps.livePermissions
     }
 
     // rx 系列，Kotlin 最好使用 flow，不要使用 rx

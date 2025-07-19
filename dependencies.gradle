@@ -114,6 +114,31 @@ ext {
             core      : "com.google.dagger:hilt-android:${Versions.hilt}",
             compiler  : "com.google.dagger:hilt-android-compiler:${Versions.hilt}",
     ]
+
+    IncludeLib = [
+            // 内存泄露
+            leakCanary2       : false,
+            // 应用前后台监听
+            lifecycleProcess  : true,
+
+            recyclerView      : false,
+
+            room              : false,
+            roomRxJava2       : false,
+
+            retrofit2         : false,
+            retrofit2RxJava2  : false,
+
+            glide             : false,
+
+            // 权限申请
+            livePermissions   : true,
+
+            // 内嵌加载中
+            loadSir           : false,
+
+            rxJava2           : false
+    ]
 }
 
 /**
