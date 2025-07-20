@@ -128,7 +128,7 @@ ext {
             room            : false,
             roomRxJava2     : false,
 
-            retrofit2       : false,
+            retrofit2       : true,
             retrofit2RxJava2: false,
 
             glide           : false,
