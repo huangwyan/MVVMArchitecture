@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
-import com.kingja.loadsir.callback.Callback
+import com.imyyq.mvvm.com.kingja.loadsir.callback.Callback
 
 /**
  * 如果你的界面足够简单，不需要 ViewModel，那么可以继承自此类。

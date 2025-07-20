@@ -2,9 +2,9 @@ package com.imyyq.mvvm.app
 
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import com.imyyq.mvvm.R
-import com.kingja.loadsir.callback.Callback
-import com.kingja.loadsir.core.LoadSir
+import com.imyyq.mvvm.com.kingja.loadsir.callback.Callback
+import com.imyyq.mvvm.com.kingja.loadsir.core.LoadSir
+import com.leisure.card.R
 
 
 /**

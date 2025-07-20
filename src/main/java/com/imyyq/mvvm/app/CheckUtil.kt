@@ -1,6 +1,7 @@
 package com.imyyq.mvvm.app
 
-import com.imyyq.mvvm.R
+import com.leisure.card.R
+
 
 internal object CheckUtil {
 

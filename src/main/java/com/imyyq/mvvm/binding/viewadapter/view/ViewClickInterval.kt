@@ -1,7 +1,7 @@
 package com.imyyq.mvvm.binding.viewadapter.view
 
 import android.view.View
-import com.imyyq.mvvm.R
+import com.leisure.card.R
 
 /**
  * get set

@@ -4,8 +4,8 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
-import com.imyyq.mvvm.R
 import com.imyyq.mvvm.app.GlobalConfig
+import com.leisure.card.R
 
 abstract class AppBarDataBindingBaseActivity<V : ViewDataBinding, VM : AppBarBaseViewModel<out BaseModel, out IAppBarProcessor>,
         AppBarV : ViewDataBinding, AppBarP : IAppBarProcessor>(

@@ -10,15 +10,15 @@ import androidx.collection.ArrayMap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
-import com.imyyq.mvvm.R
 import com.imyyq.mvvm.app.CheckUtil
 import com.imyyq.mvvm.app.RepositoryManager
 import com.imyyq.mvvm.bus.LiveDataBus
+import com.imyyq.mvvm.com.kingja.loadsir.callback.Callback
 import com.imyyq.mvvm.http.HttpHandler
 import com.imyyq.mvvm.utils.SingleLiveEvent
 import com.imyyq.mvvm.utils.Utils
 import com.imyyq.mvvm.utils.isInUIThread
-import com.kingja.loadsir.callback.Callback
+import com.leisure.card.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.CoroutineScope

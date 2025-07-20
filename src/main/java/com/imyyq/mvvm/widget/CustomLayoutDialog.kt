@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.WindowManager
 import androidx.annotation.LayoutRes
-import com.imyyq.mvvm.R
+import com.leisure.card.R
 
 class CustomLayoutDialog(
     context: Context,

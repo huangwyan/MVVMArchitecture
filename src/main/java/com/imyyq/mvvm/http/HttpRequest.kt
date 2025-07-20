@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.collection.ArrayMap
-import com.imyyq.mvvm.R
 import com.imyyq.mvvm.app.GlobalConfig
 import com.imyyq.mvvm.base.IBaseResponse
 import com.imyyq.mvvm.http.interceptor.HeaderInterceptor
@@ -14,6 +13,7 @@ import com.imyyq.mvvm.utils.AppUtil
 import com.imyyq.mvvm.utils.LogUtil
 import com.imyyq.mvvm.utils.SPUtils
 import com.imyyq.mvvm.utils.Utils
+import com.leisure.card.R
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

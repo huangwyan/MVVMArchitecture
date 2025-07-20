@@ -14,10 +14,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.imyyq.mvvm.bus.LiveDataBus
+import com.imyyq.mvvm.com.kingja.loadsir.core.LoadService
+import com.imyyq.mvvm.com.kingja.loadsir.core.LoadSir
 import com.imyyq.mvvm.utils.Utils
 import com.imyyq.mvvm.widget.CustomLayoutDialog
-import com.kingja.loadsir.core.LoadService
-import com.kingja.loadsir.core.LoadSir
 
 /**
  * 通过构造函数和泛型，完成 view 的初始化和 vm 的初始化，并且将它们绑定，

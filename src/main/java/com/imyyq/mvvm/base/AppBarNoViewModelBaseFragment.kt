@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
-import com.kingja.loadsir.callback.Callback
+import com.imyyq.mvvm.com.kingja.loadsir.callback.Callback
 
 /**
  * 详见 [NoViewModelBaseActivity] 的注释，一样的

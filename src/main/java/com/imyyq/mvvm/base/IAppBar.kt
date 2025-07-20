@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.viewbinding.ViewBinding
-import com.imyyq.mvvm.R
+import com.leisure.card.R
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 

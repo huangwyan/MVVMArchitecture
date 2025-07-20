@@ -12,10 +12,9 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
-import com.imyyq.mvvm.BuildConfig
-import com.imyyq.mvvm.R
 import com.imyyq.mvvm.app.BaseApp
 import com.imyyq.mvvm.app.GlobalConfig
+import com.leisure.card.R
 import java.io.BufferedWriter
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
@@ -37,10 +36,10 @@ object LogUtil {
     /**
      * Log 密码
      */
-    var mLogPwd: String = if (BuildConfig.DEBUG) "12345678" else BaseApp.getInstance().packageName
+    var mLogPwd: String = BaseApp.getInstance().packageName
 
     // 只有 debug 和 beta 才默认输出 log
-    private val mIsLog: Boolean = BuildConfig.DEBUG || GlobalConfig.gIsSaveLog
+    private val mIsLog: Boolean = GlobalConfig.gIsSaveLog
 
     private const val V = 0x1
     private const val D = 0x2
@@ -112,7 +111,6 @@ object LogUtil {
 
         sb.append("appVerName:").append(AppUtil.versionName).append(lineSeparator)
         sb.append("appVerCode:").append(AppUtil.versionCode).append(lineSeparator)
-        sb.append("buildType:").append(BuildConfig.BUILD_TYPE).append(lineSeparator)
         // 系统版本
         sb.append("OsVer:").append(Build.VERSION.RELEASE).append(lineSeparator)
         // 手机厂商

@@ -9,7 +9,7 @@ import android.os.Looper
 import android.os.Parcelable
 import android.view.View
 import androidx.collection.ArrayMap
-import com.imyyq.mvvm.R
+import com.leisure.card.R
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.Serializable

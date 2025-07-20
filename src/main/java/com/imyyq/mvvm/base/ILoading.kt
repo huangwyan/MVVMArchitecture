@@ -1,6 +1,6 @@
 package com.imyyq.mvvm.base
 
-import com.kingja.loadsir.callback.Callback
+import com.imyyq.mvvm.com.kingja.loadsir.callback.Callback
 
 /**
  * 加载中接口

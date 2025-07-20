@@ -11,10 +11,10 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import androidx.slidingpanelayout.widget.SlidingPaneLayout.PanelSlideListener
-import com.imyyq.mvvm.R
 import com.imyyq.mvvm.app.GlobalConfig
 import com.imyyq.mvvm.utils.DensityUtil.dp2px
 import com.imyyq.mvvm.utils.ScreenUtils
+import com.leisure.card.R
 
 abstract class ParallaxSwipeBackActivity : AppCompatActivity() {
     // 父布局
