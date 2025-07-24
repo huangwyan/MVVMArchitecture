@@ -97,7 +97,7 @@ abstract class ParallaxSwipeBackActivity : AppCompatActivity() {
         setContentView(layoutInflater.inflate(id, null))
     }
 
-    override fun setContentView(v: View) {
+    override fun setContentView(v: View?) {
         setContentView(
             v,
             ViewGroup.LayoutParams(
@@ -120,8 +120,8 @@ abstract class ParallaxSwipeBackActivity : AppCompatActivity() {
     }
 
     override fun setContentView(
-        v: View,
-        params: ViewGroup.LayoutParams
+        v: View?,
+        params: ViewGroup.LayoutParams?
     ) {
         if (isSupportSwipe()) {
             initSliding()

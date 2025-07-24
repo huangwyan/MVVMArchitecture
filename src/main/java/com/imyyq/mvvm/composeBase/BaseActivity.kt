@@ -1,5 +1,7 @@
+/*
 package com.imyyq.mvvm.composeBase
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -26,42 +28,48 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.flow.collect
 
+*/
 /**
- *   Created by HuangWuYan on 2025/7/23
- *   Desc:
- **/
-abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
+ * Created by HuangWuYan on 2025/7/23
+ * Desc: Base activity for MVVM with Compose
+ *//*
 
-    protected lateinit var viewModel: VM
+abstract class BaseActivity : ComponentActivity() {
 
-    abstract fun createViewModel(): Class<VM>
+    protected lateinit var viewModel: BaseViewModel
+
+    abstract fun createViewModel(): Class<out BaseViewModel>
+
     @Composable
-    abstract fun ContentView(viewModel: VM)
+    abstract fun ContentView(viewModel: BaseViewModel)
 
-    @Composable open fun LoadingView() {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    @Composable
+    fun LoadingView() {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
     }
 
-    @Composable open fun ErrorView(message: String, onRetry: () -> Unit) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    @Composable
+    fun ErrorView(message: String, onRetry: () -> Unit) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("出错啦：$message", color = Color.Red)
-                Spacer(Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = onRetry) { Text("重试") }
             }
         }
     }
 
-    @Composable open fun EmptyView(onRetry: () -> Unit) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    @Composable
+    fun EmptyView(onRetry: () -> Unit) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("暂无内容")
-                Spacer(Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = onRetry) { Text("刷新") }
             }
         }
@@ -69,12 +77,12 @@ abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
 
     open fun onRetry() {}
 
+    @SuppressLint("StateFlowValueCalledInComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[createViewModel()]
 
         setContent {
-            val uiState by viewModel.uiState
             val context = LocalContext.current
             var currentDialog by remember { mutableStateOf<DialogEvent?>(null) }
 
@@ -90,13 +98,12 @@ abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
                 }
             }
 
-            Surface(Modifier.fillMaxSize()) {
-                when (val state = uiState) {
+            Surface(modifier = Modifier.fillMaxSize()) {
+                when (val state = viewModel.uiState.value) {
                     is UiState.Loading -> LoadingView()
                     is UiState.Error -> ErrorView(state.message) { onRetry() }
                     is UiState.Empty -> EmptyView { onRetry() }
-                    is UiState.Success<*> -> ContentView(viewModel)
-                    else -> ContentView(viewModel)
+                    is UiState.Success -> ContentView(viewModel)
                 }
             }
 
@@ -112,7 +119,6 @@ abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
                             }
                         }
                     )
-
                     is DialogEvent.Confirm -> AlertDialog(
                         onDismissRequest = { currentDialog = null },
                         title = { Text(event.title) },
@@ -131,12 +137,21 @@ abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
                             }
                         }
                     )
-
-                    is DialogEvent.Custom -> Dialog(onDismissRequest = { currentDialog = null }) {
-                        event.content()
-                    }
+                    is DialogEvent.Custom -> AlertDialog(
+                        onDismissRequest = { currentDialog = null },
+                        title = { Text(event.title) },
+                        text = { Text(event.message) },
+                        confirmButton = {
+                            TextButton(onClick = {
+                                currentDialog = null
+                                event.onConfirm()
+                            }) {
+                                Text("确定")
+                            }
+                        }
+                    )
                 }
             }
         }
     }
-}
+}*/

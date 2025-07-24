@@ -1,46 +1,48 @@
 package com.imyyq.mvvm.composeBase
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 /**
- *   Created by HuangWuYan on 2025/7/23
- *   Desc:
- **/
+ * Created by HuangWuYan on 2025/7/23
+ * Desc: Base ViewModel for MVVM with Compose
+ */
 open class BaseViewModel : ViewModel() {
 
-    private val _uiState = mutableStateOf<UiState<Any>>(UiState.Idle)
-    val uiState: State<UiState<Any>> = _uiState
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
-    private val _toast = MutableSharedFlow<String>()
-    val toast = _toast.asSharedFlow()
+    private val _toast = MutableStateFlow<String?>(null)
+    val toast = _toast.asStateFlow()
 
-    private val _dialogEvent = MutableSharedFlow<DialogEvent>()
-    val dialogEvent = _dialogEvent.asSharedFlow()
+    private val _dialogEvent = MutableStateFlow<DialogEvent?>(null)
+    val dialogEvent = _dialogEvent.asStateFlow()
 
-    fun showLoading() { _uiState.value = UiState.Loading }
-    fun showEmpty() { _uiState.value = UiState.Empty }
-    fun showError(msg: String) { _uiState.value = UiState.Error(msg) }
-    fun <T> showSuccess(data: T) { _uiState.value = UiState.Success(data as Any) }
-    fun reset() { _uiState.value = UiState.Idle }
-
-    suspend fun showToast(msg: String) {
-        _toast.emit(msg)
+    fun showToast(message: String) {
+        viewModelScope.launch {
+            _toast.value = message
+        }
     }
 
-    suspend fun showInfoDialog(title: String, msg: String) {
-        _dialogEvent.emit(DialogEvent.Info(title, msg))
+    fun showDialog(event: DialogEvent) {
+        viewModelScope.launch {
+            _dialogEvent.value = event
+        }
     }
 
-    suspend fun showConfirmDialog(title: String, msg: String, onConfirm: () -> Unit) {
-        _dialogEvent.emit(DialogEvent.Confirm(title, msg, onConfirm))
+    fun clearDialog() {
+        viewModelScope.launch {
+            _dialogEvent.value = null
+        }
     }
 
-    suspend fun showCustomDialog(content: @Composable () -> Unit) {
-        _dialogEvent.emit(DialogEvent.Custom(content))
+    fun updateState(state: UiState) {
+        viewModelScope.launch {
+            _uiState.value = state
+        }
     }
 }

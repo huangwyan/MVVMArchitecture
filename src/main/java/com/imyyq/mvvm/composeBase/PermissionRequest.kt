@@ -1,3 +1,4 @@
+/*
 package com.imyyq.mvvm.composeBase
 
 import android.content.pm.PackageManager
@@ -9,10 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.compose.ui.platform.LocalContext
 import androidx.activity.compose.rememberLauncherForActivityResult
 
+*/
 /**
  *   Created by HuangWuYan on 2025/7/23
  *   Desc:
- **/
+ **//*
+
 data class PermissionRequest(
     val permissions: List<String>,
     val rationale: String = "该功能需要权限",
@@ -39,4 +42,4 @@ fun HandlePermission(request: PermissionRequest) {
         if (denied.isEmpty()) request.onGranted()
         else launcher.launch(denied.toTypedArray())
     }
-}
+}*/
