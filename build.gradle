@@ -101,6 +101,7 @@ dependencies {
 
     api Deps.foundation
     implementation libs.androidx.material3.android
+    api Deps.viewmodelCompose
 
     // 监控应用的生命周期
     checkMVVMConfigProperty(IncludeLib.lifecycleProcess, "lifecycleProcess")
